@@ -1,0 +1,23 @@
+@font-face {
+    font-family: "PoppinsRegular";
+    src: local("PoppinsRegular"), url('./Poppins-Regular.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "PoppinsSemiBold";
+    src: local("PoppinsSemiBold"), url('./Poppins-SemiBold.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "OpenSansRegular";
+    src: local("OpenSansRegular"), url('./OpenSans-Regular.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "MerriweatherBold";
+    src: local("MerriweatherBold"), url('./Merriweather-Bold.ttf') format("truetype");
+}
+@font-face {
+    font-family: "MerriweatherLight";
+    src: local("MerriweatherLight"), url('./Merriweather-Light.ttf') format("truetype");
+}
