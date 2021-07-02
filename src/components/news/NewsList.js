@@ -92,7 +92,7 @@ const NewsList = () => {
 		setPage(page + 1)
 		fetchNews()
 	}
-
+	{/* Todo: move api call to actions */}
 	return (
 		<div className="">
 			{/* Search */}
@@ -108,17 +108,15 @@ const NewsList = () => {
 							placeholder="Search for something"
 							autoComplete="off"
 						/>
-						{/* <Link to={`/search/${value}`}> */}
 						<Button
 							variant="outline-secondary"
 							id="button-addon2"
-							// onClick={searchNews}
+				
 							type="submit"
 							disabled={loading || !value}
 						>
 							<span>Search</span>
-						</Button>
-						{/* </Link> */}
+						</Button>		
 					</InputGroup>
 				</form>
 			</div>
@@ -141,10 +139,12 @@ const NewsList = () => {
 			)}
 
 			{/* List of news */}
+
 			<CardGroup>
 				<NewsComponent />
 			</CardGroup>
 
+					{/* Load more */}
 			<div className="load-more-wrapper">
 				{loading ? (
 					<Spinner animation="grow" />
