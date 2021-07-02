@@ -30,7 +30,7 @@ const NewsList = () => {
 
 	const apiCalls = async () => {
 		const res = await axios
-			.get(`https://newsapi.org/v2/everything?q=${value}&sortBy=${sortByValue}&apiKey=653b1c769da0469cbd2923100432eb11`)
+			.get(`https://newsapi.org/v2/everything?q=${value}&sortBy=${sortByValue}&apiKey=3cb3cc56a27440f0a5608aa33528b423`)
 			.catch((err) => {
 				console.log('Error occured', err)
 			})
@@ -54,7 +54,7 @@ const NewsList = () => {
 	const fetchNews = async () => {
 		dispatch({ type: 'SET_LOADING', payload: true })
 		const res = await axios
-			.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=653b1c769da0469cbd2923100432eb11&page=${page}&pageSize=${pageSize}`)
+			.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=3cb3cc56a27440f0a5608aa33528b423&page=${page}&pageSize=${pageSize}`)
 			.catch((err) => {
 				console.log('Error occured', err)
 			})
@@ -69,7 +69,7 @@ const NewsList = () => {
 
 		dispatch({ type: 'SET_LOADING', payload: true })
 		const res = await axios
-			.get(`https://newsapi.org/v2/everything?q=${value}&sortBy=${sortByValue}&apiKey=653b1c769da0469cbd2923100432eb11`)
+			.get(`https://newsapi.org/v2/everything?q=${value}&sortBy=${sortByValue}&apiKey=3cb3cc56a27440f0a5608aa33528b423`)
 			.catch((err) => {
 				console.log('Error occured', err)
 			})
