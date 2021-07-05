@@ -1,7 +1,6 @@
 
 import './App.scss';
-// import './App.css';
-import { BrowserRouter as Router, Switch, Route, NavLink, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
 import NewsList from './components/news/NewsList';
@@ -23,7 +22,6 @@ function App() {
       <Route path="/news/:newsId" exact component={NewsDetails} />
       <Route path="/search/:value" exact component={NewsList} />
       <Route component={PageNotFound}></Route>
-      {/* <Redirect to="/"></Redirect> */}
       </Switch>
       </Router>
       </Container>

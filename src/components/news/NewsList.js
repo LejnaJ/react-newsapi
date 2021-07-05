@@ -10,46 +10,16 @@ import Button from 'react-bootstrap/Button'
 import Spinner from 'react-bootstrap/Spinner'
 import InputGroup from 'react-bootstrap/InputGroup'
 
-var pageSize = 20
+let pageSize = 20
 const NewsList = () => {
 	const [page, setPage] = useState(1)
 	const [value, setValue] = useState('')
 	const [sortByValue, setSortByValue] = useState('')
 	const [showDropdown, setShowDropdown] = useState(false)
-	const news = useSelector((state) => state.allNews.news)
 	const loading = useSelector((state) => state.allNews.loading)
 	let history = useHistory()
-	// const dropdownRef = useRef()
 	const dispatch = useDispatch()
 
-	const dropdownSelectHandler = (sortValue) => {
-		if (sortValue) {
-			setSortByValue(sortValue)
-		}
-	}
-
-	const apiCalls = async () => {
-		const res = await axios
-			.get(`https://newsapi.org/v2/everything?q=${value}&sortBy=${sortByValue}&apiKey=3cb3cc56a27440f0a5608aa33528b423`)
-			.catch((err) => {
-				console.log('Error occured', err)
-			})
-		if (res.status === 200) {
-			dispatch(searchNewsAction(res.data.articles))
-			setShowDropdown(true)
-		}
-	}
-
-	useEffect(() => {
-		if (sortByValue) {
-			history.push(`/search/${value}`)
-
-			dispatch({ type: 'SET_LOADING', payload: true })
-
-			apiCalls()
-			dispatch({ type: 'SET_LOADING', payload: false })
-		}
-	}, [sortByValue, dispatch, history, value])
 
 	const fetchNews = async () => {
 		dispatch({ type: 'SET_LOADING', payload: true })
@@ -79,6 +49,36 @@ const NewsList = () => {
 		}
 		dispatch({ type: 'SET_LOADING', payload: false })
 	}
+	
+	const dropdownSelectHandler = (sortValue) => {
+		if (sortValue) {
+			setSortByValue(sortValue)
+		}
+	}
+
+	const apiCalls = async () => {
+		const res = await axios
+			.get(`https://newsapi.org/v2/everything?q=${value}&sortBy=${sortByValue}&apiKey=3cb3cc56a27440f0a5608aa33528b423`)
+			.catch((err) => {
+				console.log('Error occured', err)
+			})
+		if (res.status === 200) {
+			dispatch(searchNewsAction(res.data.articles))
+			setShowDropdown(true)
+		}
+	}
+
+	useEffect(() => {
+		if (sortByValue) {
+			history.push(`/search/${value}`)
+
+			dispatch({ type: 'SET_LOADING', payload: true })
+
+			apiCalls()
+			dispatch({ type: 'SET_LOADING', payload: false })
+		}
+	}, [sortByValue, dispatch, history, value])
+
 
 	useEffect(() => {
 		if (page === 1) {
@@ -86,13 +86,12 @@ const NewsList = () => {
 		}
 	}, [])
 
-	// useEffect(() => searchNews(), [sortByValue]);
-
 	const loadMore = () => {
 		setPage(page + 1)
 		fetchNews()
 	}
 	{/* Todo: move api call to actions */}
+	
 	return (
 		<div className="">
 			{/* Search */}
@@ -126,11 +125,11 @@ const NewsList = () => {
 			{showDropdown ? (
 				<div className="dropdown-wrapper">
 					<select className="btn-outline" onChange={(e) => dropdownSelectHandler(e.target.value)}>
-						<option value="" disabled selected hidden>
+						<option value="" disabled  hidden>
 							Sort By
 						</option>
-						<option value="popularity">Popularity</option>
 						<option value="relevancy">Relevancy</option>
+						<option value="popularity">Popularity</option>
 						<option value="publishedAt">Published Date </option>
 					</select>
 				</div>

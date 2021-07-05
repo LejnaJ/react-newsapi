@@ -1,13 +1,10 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import slugify from 'slugify'
-import { selectedNews } from '../../redux/actions/newsActions'
+import defaultPic from "../../assets/img/default.jpg"
 export const NewsDetails = () => {
 	const { newsId } = useParams()
-
 	const news = useSelector((state) => state.allNews.news)
-	console.log('Detalji: ', news)
 
 	const rendernews = news.find((article) => slugify(article.title) === newsId)
 
@@ -18,6 +15,11 @@ export const NewsDetails = () => {
 			</section>
 		)
 	}
+
+ //Set default pic in case we get error on imgUrl
+ const imageErr = (e) => {
+	e.target.src = defaultPic;
+  }
 
 	const { title, content, source, author, description, urlToImage, publishedAt, url } = rendernews
 
@@ -35,7 +37,7 @@ export const NewsDetails = () => {
 					<div className="date"> {new Date(publishedAt).toLocaleDateString()}</div>
 				</div>
 				<div className="article right-section">
-					<img src={urlToImage ? urlToImage : 'defaultPic'} alt="pic" />
+					<img onError={imageErr} src={urlToImage ? urlToImage : 'defaultPic'} alt="pic" />
 				</div>
 			</div>
 			<p dangerouslySetInnerHTML={{ __html: content }} className="article-content"></p>

@@ -4,7 +4,7 @@ const Footer = () => {
             <div className="container">
                 <div className="main-section">
                 <div className="logo">
-                <h1>News<span>Reader</span></h1>
+                <h1>News<span className="turqoise">Reader</span></h1>
                 </div>
                 </div>
                 
